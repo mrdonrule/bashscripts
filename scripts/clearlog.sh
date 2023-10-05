@@ -18,7 +18,7 @@ truncate -s 0  /var/log/cwp/cwp_cron.log
 truncate -s 0  /var/log/cwp/cwp_backup.log
 truncate -s 0  /var/log/cwp/activity.log
 truncate -s 0  /usr/local/cwpsrv/var/services/roundcube/logs/errors
-
+truncate -s 0  /var/log/mysql/mysql.log
 # Remove all file from the folder that contains
 rm -rf /var/log/maillog-*
 rm -rf /var/log/monit.log-*
