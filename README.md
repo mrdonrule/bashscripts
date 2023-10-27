@@ -12,10 +12,10 @@ A collection of simple Bash scripts.
 After creating these files you can make them executable by running these command as root ``` chmod +x filename.sh ```
 Set a cronjob every minute,  Example ``` crontab -e ```  them edit cron internace with ``` /path/to/your/command * * * * * /root/check_bind.sh ```
 ## BAD HTACCESS EXAMPLE
-``` <FilesMatch ".(py|exe|phtml|php|PhP|php5|suspected)$">
+<FilesMatch ".(py|exe|phtml|php|PhP|php5|suspected)$">
   Order Allow,Deny
   Deny from all
-</FilesMatch> ```
+</FilesMatch>
 ## License
 
 MIT
