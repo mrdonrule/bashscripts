@@ -1,18 +1,22 @@
-# Backup each table in database
 #!/bin/bash
 
-USER="root"
-PASSWORD="n30EzOk55vXw"
-#OUTPUT="/backup/db/"
+# Configuration
+BACKUP_DIR="/backup/mysql_custom_dumps"
+DATE=$(date +"%Y-%m-%d_%H%M%S")
 
-#rm "$OUTPUTDIR/*gz" > /dev/null 2>&1
+# Ensure the backup folder exists
+mkdir -p "$BACKUP_DIR"
 
-databases=`mysql -u $USER -p$PASSWORD -e "SHOW DATABASES;" | tr -d "| " | grep -v Database`
+# Fetch all active databases (skipping structural system tables)
+DATABASES=$(mysql -e "SHOW DATABASES;" | grep -Ev "Database|information_schema|performance_schema|sys|mysql")
 
-for db in $databases; do
-    if [[ "$db" != "information_schema" ]] && [[ "$db" != "performance_schema" ]] && [[ "$db" != "mysql" ]] && [[ "$db" != _* ]] ; then
-        echo "Dumping database: $db"
-        mysqldump -u $USER -p$PASSWORD --databases $db > `date +%Y%m%d`.$db.sql
-       # gzip $OUTPUT/`date +%Y%m%d`.$db.sql
-    fi
+echo "Starting CWP Database Export Process..."
+
+for DB in $DATABASES; do
+    echo "Compressing & Backing Up: $DB"
+    
+    # Export and compress instantly on the fly
+    mysqldump --single-transaction --quick --routines --triggers "$DB" | gzip > "$BACKUP_DIR/${DB}_$DATE.sql.gz"
 done
+
+echo "Success! All database archives are safely stored in $BACKUP_DIR"
