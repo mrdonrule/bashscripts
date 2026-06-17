@@ -9,7 +9,7 @@ A collection of simple Bash scripts.
 4. [BINDcheck.sh](scripts/check_bind.sh) shell script to check if the BIND (Berkeley Internet Name Domain) DNS server is running and restart it if it's not.
 5. [CheckNginx.sh](scripts/check_nginx.sh) shell script to check if the Check if nginx server is running and restart it if it's not restart
 6. [RemoveBadHtaccess](scripts/remove_bad_htaccess.sh) Remove bad htaccess
-7. [BackupEachDatase](scripts/db_table_backup.sh) Backup each database using shel
+7. [BackupEachDatase](scripts/db_table_backup.sh) Backup each database using shell
 
 After creating these files you can make them executable by running these command as root ``` chmod +x filename.sh ```
 Set a cronjob every minute,  Example ``` crontab -e ```  them edit cron internace with ``` /path/to/your/command * * * * * /root/check_bind.sh ```
